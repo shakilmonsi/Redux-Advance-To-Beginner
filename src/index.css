@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&family=Poppins&display=swap");
+@import "tailwindcss";
+
+:root {
+  --font-primary: "Rubik", sans-serif;
+  --font-secondary: "Poppins", sans-serif;
+  --color-primary: rgb(25, 179, 231);
+  --color-secondary: rgb(17, 40, 74);
+  --color-accent: rgb(255, 255, 255);
+  --color-background: rgb(16, 24, 40);
+  --color-border-color: rgb(255, 255, 255);
+  --shadow-box-style: 1px 1px 1px 2px rgb(0 0 0 / 0.1);
+  --shadow-btn-style: 2px 2px 0px 2px rgb(0 0 0 / 0.1);
+  --color-card: rgb(25, 25, 25);
+  --color-cta: rgb(0, 122, 255);
+  --color-cta-active: rgb(0, 102, 215);
+  --color-cta-text: rgb(255, 255, 255);
+  --color-cta-txt-active: rgb(255, 230, 9);
+}
+
+/* Theme Overrides */
+.light-mode {
+  --color-primary: rgb(17, 40, 74);
+  --color-secondary: rgb(25, 179, 231);
+  --color-accent: rgb(0, 0, 0);
+  --color-background: rgb(255, 255, 255);
+  --color-card: rgb(255, 255, 255);
+  --color-border-color: rgb(25, 179, 231);
+}
+
+.dark-mode {
+  /* already handled by :root */
+}
+
+.red-mode {
+  --color-primary: rgb(255, 255, 255);
+  --color-secondary: rgb(255, 255, 255);
+  --color-accent: rgb(255, 255, 255);
+  --color-background: rgb(78, 0, 0);
+  --color-box-shadow-color: rgba(211, 211, 211, 0.904);
+  --color-btn-shadow-color: rgba(51, 2, 2, 0.575);
+  --color-card: rgba(128, 3, 3, 0.623);
+  --color-cta-text: rgb(0, 0, 0);
+}
+
+/* Smooth transition */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Gradient Animation Example */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-primary)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+
+/* আপনি যদি এখানে অতিরিক্ত গ্লোবাল CSS যোগ করতে চান, করতে পারেন */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling if the flowchart is full screen */
+}

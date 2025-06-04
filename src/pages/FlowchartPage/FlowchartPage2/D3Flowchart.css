@@ -1,0 +1,167 @@
+/* Container for the D3 SVG */
+.flowchart-container {
+    width: 100vw;
+    height: calc(100vh - 120px); /* Adjust height for title and padding */
+    display: flex; /* Flexbox ব্যবহার করুন যাতে SVG সেন্টারে থাকে */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent scrollbars */
+    /* optional: background-color: #1a202c; যদি SVG এর বাইরেও ব্যাকগ্রাউন্ড দেখাতে চান */
+}
+
+/* Base SVG styling */
+.d3-flowchart {
+    background-color: #1a202c; /* Tailwind's gray-900 equivalent */
+    width: 100%; /* কন্টেইনারের পুরো প্রস্থ নেবে */
+    height: 100%; /* কন্টেইনারের পুরো উচ্চতা নেবে */
+    /* optional: border: 1px solid red;  Debugging border */
+}
+
+/* Node group base styles */
+.flowchart-node {
+    cursor: pointer;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* For hidden transition */
+}
+
+/* Node Rectangles */
+.flowchart-node rect {
+    fill: #4A5568; /* Default gray-600 */
+    stroke: #2D3748; /* Default gray-800 */
+    stroke-width: 2px;
+    transition: fill 0.2s ease, stroke 0.2s ease, transform 0.2s ease, opacity 0.3s ease;
+}
+
+/* Node Text (Labels) */
+.flowchart-node text {
+    fill: #FFFFFF; /* White text */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    text-anchor: middle; /* Center text horizontally */
+    pointer-events: none; /* Text doesn't block click events on rect */
+}
+
+/* Specific Node Colors */
+.node-red rect {
+    fill: #DC2626; /* bg-red-600 */
+    stroke: #991B1B; /* border-red-800 */
+}
+.node-red:hover rect {
+    fill: #B91C1C; /* hover:bg-red-700 */
+}
+
+.node-blue rect {
+    fill: #2563EB; /* bg-blue-600 */
+    stroke: #1E40AF; /* border-blue-800 */
+}
+.node-blue:hover rect {
+    fill: #1D4ED8; /* hover:bg-blue-700 */
+}
+
+.node-purple rect {
+    fill: #9333EA; /* bg-purple-600 */
+    stroke: #6B21A8; /* border-purple-800 */
+}
+.node-purple:hover rect {
+    fill: #7C3AED; /* hover:bg-purple-700 */
+}
+
+.node-green rect {
+    fill: #10B981; /* bg-green-600 */
+    stroke: #065F46; /* border-green-800 */
+}
+.node-green:hover rect {
+    fill: #059669; /* hover:bg-green-700 */
+}
+
+.node-orange rect {
+    fill: #F97316; /* bg-orange-500 */
+    stroke: #C2410C; /* border-orange-700 */
+}
+.node-orange:hover rect {
+    fill: #EA580C; /* hover:bg-orange-600 */
+}
+
+.node-lightgreen rect {
+    fill: #84CC16; /* bg-lime-600 */
+    stroke: #4D7C0F; /* border-lime-800 */
+}
+.node-lightgreen:hover rect {
+    fill: #65A30D; /* hover:bg-lime-700 */
+}
+
+.node-darkgreen rect {
+    fill: #166534; /* bg-green-800 */
+    stroke: #052E16; /* border-green-950 */
+}
+.node-darkgreen:hover rect {
+    fill: #14532D; /* hover:bg-green-900 */
+}
+
+.node-specialist rect {
+    fill: #4B5563; /* bg-gray-700 */
+    stroke: #6B7280; /* border-gray-500 */
+}
+.node-specialist:hover rect {
+    fill: #374151; /* hover:bg-gray-600 */
+}
+
+/* Selected Node Highlight */
+.node-selected rect {
+    stroke: #FBBF24; /* ring-yellow-400 */
+    stroke-width: 4px;
+    transform: scale(1.05);
+    transition: transform 0.2s ease-out, stroke 0.2s ease-out, stroke-width 0.2s ease-out;
+}
+
+/* Hidden Node (not visible, no interaction) */
+.node-hidden {
+    opacity: 0;
+    pointer-events: none; /* Disable interaction when hidden */
+}
+
+/* Disabled Node (visible but non-interactive and faded) */
+.node-disabled rect {
+    fill: #4A5568 !important; /* Lighter grey to indicate disabled state */
+    stroke: #2D3748 !important;
+    opacity: 0.6; /* Reduce opacity */
+    cursor: not-allowed; /* Change cursor to "not allowed" */
+    transition: opacity 0.3s ease, fill 0.3s ease;
+}
+
+.node-disabled text {
+    fill: #A0AEC0 !important; /* Lighter text color */
+    opacity: 0.6;
+}
+
+/* Disable hover effects for disabled nodes */
+.node-disabled:hover rect {
+    fill: #4A5568 !important; /* Keep original fill on hover for disabled */
+    stroke: #2D3748 !important;
+}
+
+/* Ensure pointer-events are none for disabled nodes (important for click disabling) */
+.node-disabled {
+    pointer-events: none;
+}
+
+
+/* Edges (Lines) */
+.flowchart-edge {
+    stroke: #9CA3AF; /* gray-400 */
+    stroke-width: 2px;
+    fill: none;
+    transition: opacity 0.3s ease-out; /* For hiding/showing edges */
+}
+
+/* Animated Edges (Dotted line animation) */
+/* This creates a 'marching ants' or 'tree root' like animation */
+.edge-animated {
+    stroke-dasharray: 8, 4; /* dash, gap */
+    animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -12; /* move the dashes */
+    }
+}

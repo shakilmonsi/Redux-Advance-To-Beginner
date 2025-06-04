@@ -1,0 +1,7 @@
+{
+  "welcome": "Welcome to our app",
+  "button": {
+    "login": "Login",
+    "signup": "Sign Up"
+  }
+}
